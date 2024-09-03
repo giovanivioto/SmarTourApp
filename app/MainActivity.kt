@@ -10,7 +10,7 @@ import java.io.IOException
 class MainActivity : AppCompatActivity() {
 
     private val client = OkHttpClient()
-    private val ipGeolocationApiKey = "caa077ed9d7441fc93500edf3a623997" // Substitua com sua chave API do IPGeolocation
+    private val ipGeolocationApiKey = "caa077ed9d7441fc93500edf3a623997"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,13 +19,11 @@ class MainActivity : AppCompatActivity() {
         val ipTextView = findViewById<TextView>(R.id.ipTextView)
         val locationTextView = findViewById<TextView>(R.id.locationTextView)
 
-        // Obtém o IP atual do dispositivo
         getCurrentIp { ip ->
             runOnUiThread {
                 ipTextView.text = "IP: $ip"
             }
 
-            // Consulta o serviço de geolocalização
             getLocationInfo(ip) { locationInfo ->
                 runOnUiThread {
                     locationTextView.text = locationInfo
